@@ -1,14 +1,12 @@
-;(function() {
-	
-	function SKDCarousel(option) {
+function SKDCarousel(option) {
 	   
 
             var crlsTimer = 0,
                 i;
                 
-            var setting = option || {selector:'.carousel', delay:5};
+            var setting = option || {selector:'skd-carousel', delay:5};
 		
-            var crsl = document.getElementById('#'+setting.selector);
+            var crsl = document.getElementById(setting.selector);
             if( !crsl ) return ;
             
             var delay = parseInt(setting.delay) * 1000 || 3000;
@@ -25,7 +23,7 @@
             var crls_height = crsl.clientHeight;
             var center = Math.floor(crsl_items.length/2);
 
-            playCarousel(crsl_items[0]);
+            //playCarousel(crsl_items[0]);
 
             function setTimer() {
 
@@ -116,10 +114,8 @@
                   crsl_items[i].crslPos = i;
                   crsl_items[i].addEventListener('click', function (e) {
                      if (this.crslPos==center) return ; 
-                     
-                     nextSlide = this.orgPos;
-                     clearTimer();
-                     playSlide();
+                     //nextSlide = this.orgPos;
+                     //clearTimer();
                      playCarousel(this);
                      
                      
@@ -190,5 +186,5 @@
             
          });
             
-	}
-})();
+}
+
