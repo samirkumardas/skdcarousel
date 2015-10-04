@@ -1,8 +1,11 @@
-function SKDCarousel(option) {
-	   
+;(function(window) {
 
+   window.SKDCarousel = function(option) {
+	   
             var crlsTimer = 0,
-                i;
+                current = 0,
+                $this=this;
+                this.onCenterFn = function(){};
                 
             var setting = option || {selector:'skd-carousel', delay:5};
 		
@@ -23,12 +26,15 @@ function SKDCarousel(option) {
             var crls_height = crsl.clientHeight;
             var center = Math.floor(crsl_items.length/2);
 
-            //playCarousel(crsl_items[0]);
+            
 
-            function setTimer() {
-
+            this.setTimer = function() {
+                current++;
+                if(current==crsl_items.length) {
+                  current= 0;
+                }
                 crlsTimer = setTimeout(function () {
-                    playCarousel();
+                    $this.play(crsl_items[current]);
                 }, delay);
             }
 
@@ -37,13 +43,13 @@ function SKDCarousel(option) {
             }
 
 
-            function initCarousel() {
+            this.init = function() {
             
                 var item_w, item_h, item_opacity, item_left, item_top, depth, separation;
             	
             	/*for centered item*/
-            	item_w= crsl_items[0].clientWidth;
-            	item_h= crsl_items[0].clientHeight;
+            	item_w= (setting.width)?setting.width : crsl_items[0].clientWidth;
+            	item_h= (setting.height)?setting.height : crsl_items[0].clientHeight;
             	item_opacity= 1;
             	item_left = Math.round(crls_width/2)-Math.round(item_w/2);
             
@@ -116,20 +122,24 @@ function SKDCarousel(option) {
                      if (this.crslPos==center) return ; 
                      //nextSlide = this.orgPos;
                      //clearTimer();
-                     playCarousel(this);
-                     
+                     $this.play(this);
+                     $this.onCenterFn.call(null,this.orgPos);
                      
                   });
                }
                
            } 
            
-           function playCarousel(item) {
-             moveItem(item);  
-             setItemPosition(); 
+           this.play = function(item) {
+               this.moveItem(item);  
+               this.setItemPosition();
+               
+               if(setting.auto) {
+                 this.setTimer();
+               } 
            }
 
-           function moveItem (item) {
+           this.moveItem = function(item) {
               
                    var temp, direction = item.crslPos < center ? 'forward' : 'backward';
                    
@@ -152,7 +162,7 @@ function SKDCarousel(option) {
            }
             
          
-         function setItemPosition() {
+         this.setItemPosition = function() {
          
              	for(i=0;i<crsl_items.length;i++) {   
                 	crsl_items[i].style.width =  crsl_data[i].w+'px';
@@ -166,7 +176,7 @@ function SKDCarousel(option) {
              
           }
           
-         function findMappedItem(position) {
+         this.findMappedItem = function(position) {
             
             for(i=0;i<crsl_items.length;i++) { 
                if(position ==crsl_items[i].orgPos ) {
@@ -177,14 +187,19 @@ function SKDCarousel(option) {
          
          crsl_items[0].src = crsl_items[0].src; // loading cache issue 
          crsl_items[0].addEventListener('load', function() {
-              initCarousel(); 
-              playCarousel(crsl_items[0]); 
+              $this.init(); 
+              $this.play(crsl_items[0]); 
               
               setTimeout(function(){
                crsl.style.visibility =  'visible'; 
               }, 800);
             
-         });
-            
-}
-
+         });          
+  }
+  
+  SKDCarousel.prototype.onCenter = function(fn) {
+     if (typeof fn === "function"){
+       this.onCenterFn = fn;
+     }  
+  } 
+})(window);

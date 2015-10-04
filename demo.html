@@ -4,11 +4,39 @@
 <link href="skdcarousel.css" rel="stylesheet" media="screen">
 <style>
   body{background-color:#A2A2A2;}
-  #demo{display:block; height:400px; margin: 100px auto;}
+  #demo1{display:block; height:400px; margin: 10px auto 100px;}
+  #demo2{display:block; height:400px; margin: 100px auto;}
+  h1.desc {
+    background-color: #FFF;
+    border: 2px solid #2D2D2D;
+    padding: 10px;
+    color: #FF6719;
+  }
+  #demo1-desc h1:not(:first-child){display:none;}
+  #demo2 img {filter: grayscale(0); -webkit-filter: grayscale(0);-moz-filter: grayscale(0); -ms-filter: grayscale(0);-o-filter: grayscale(0);}
 </style>
 </head>
 <body>
-<div class="skd-carousel" id="demo">
+<div id="demo1-desc">
+   <h1 class="desc" id="slide0">I am slide 1</h1>
+   <h1 class="desc" id="slide1">I am slide 2</h1>
+   <h1 class="desc" id="slide2">I am slide 3</h1>
+   <h1 class="desc" id="slide3">I am slide 4</h1>
+   <h1 class="desc" id="slide4">I am slide 5</h1>
+   <h1 class="desc" id="slide5">I am slide 6</h1>
+   <h1 class="desc" id="slide6">I am slide 7</h1>
+</div>
+<div class="skd-carousel" id="demo1">
+  <img src="images/1.jpg" />
+  <img src="images/2.jpg" />
+  <img src="images/3.jpg" />
+  <img src="images/4.jpg" />
+  <img src="images/5.jpg" />
+  <img src="images/6.jpg" />
+  <img src="images/7.jpg" />
+</div>
+
+<div class="skd-carousel" id="demo2">
   <img src="images/1.jpg" />
   <img src="images/2.jpg" />
   <img src="images/3.jpg" />
@@ -19,7 +47,15 @@
 </div>
 <script src="skdcarousel.js"></script>
 <script type="text/javascript">
-  SKDCarousel({selector:'demo'});
+  new SKDCarousel({selector:'demo1'}).onCenter(function(number){
+     var descs = document.querySelectorAll('h1.desc'); 
+     for(var i=0;i<descs.length;i++) {
+       descs[i].style.display='none'; 
+     } 
+     document.getElementById('slide'+number).style.display = 'block';
+  });
+  
+  new SKDCarousel({selector:'demo2', width:200, height:200, auto:true});
 </script>
 </body>
 </html>
