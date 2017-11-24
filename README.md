@@ -10,7 +10,8 @@ http://dandywebsolution.com/skdcarousel/demo.html
 **How to use?**
 
 **html structure**
-
+    <link href="skdcarousel.css" rel="stylesheet">
+    <script src="skdcarousel.js"></script>
     <div class="skd-carousel" id="demo1">
       <img src="images/1.jpg" />
       <img src="images/2.jpg" />
