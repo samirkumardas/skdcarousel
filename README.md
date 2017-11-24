@@ -5,7 +5,7 @@ Written by pure javascript. So don't need any javascript library like jquery.
 
 Demo
 -----
-<img src="demo.jpg" />
+<img src="demo.png" />
 
 http://dandywebsolution.com/skdcarousel/demo.html
 
