@@ -5,21 +5,21 @@ Written by pure javascript. So don't need any javascript library like jquery.
 
 Demo
 -----
+<img src="demo.jpg" />
+
 http://dandywebsolution.com/skdcarousel/demo.html
 
 **How to use?**
 
 **html structure**
+    
     <link href="skdcarousel.css" rel="stylesheet">
     <script src="skdcarousel.js"></script>
+    
     <div class="skd-carousel" id="demo1">
-      <img src="images/1.jpg" />
-      <img src="images/2.jpg" />
-      <img src="images/3.jpg" />
-      <img src="images/4.jpg" />
-      <img src="images/5.jpg" />
-      <img src="images/6.jpg" />
-      <img src="images/7.jpg" />
+      <img src="1.jpg" />
+      <img src="2.jpg" />
+      <img src="3.jpg" />
     </div>
 
 **Javascript**
