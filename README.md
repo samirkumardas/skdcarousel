@@ -23,7 +23,7 @@ http://dandywebsolution.com/skdcarousel/demo.html
 
 **Javascript**
 
-new SKDCarousel({selector:'demo1', width:200, height:200, auto:true});
+    new SKDCarousel({selector:'demo1', width:200, height:200, auto:true});
     
 Available options are:
 
