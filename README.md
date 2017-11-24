@@ -1,7 +1,8 @@
 skdcarousel
 -----------
 Javascript image carousel/slider
-Written by pure javascript. So don't need any javascript library like jquery.
+
+Written in pure javascript. So don't have any javascript library like jquery.
 
 Demo
 -----
@@ -14,7 +15,7 @@ http://dandywebsolution.com/skdcarousel/demo.html
 **html structure**
     
     <link href="skdcarousel.css" rel="stylesheet">
-    <script src="skdcarousel.js"></script>
+    <script src="skdcarousel.min.js"></script>
     
     <div class="skd-carousel" id="demo1">
       <img src="1.jpg" />
